@@ -4,7 +4,7 @@ Reemplazar con arquitectura real del proyecto al bootstrap.
 
 ```mermaid
 graph LR
-    UI[Flutter UI / Screens] --> State[State manager]
+    API[FastAPI Routers] --> Core[Services / AI Agents]
     State --> Service[API / Backend]
     Service --> Model[Models / Entities]
 ```
