@@ -12,8 +12,7 @@ Cuando el usuario escribe un comando con prefijo `$`, el agente lo reconoce como
 | `$status` | Mostrar estado actual en resumen |
 | `$work [descripción]` | Registrar nueva tarea/bug en el módulo Python |
 | `$archi` | Actualizar arquitectura viva conforme a ARCHITECTURE_STANDARD.md (Hub & Spoke) |
-| `$learn [texto]` | Registrar aprendizaje general candidato en `overview/learning.md` |
-| `$learnagnostico [texto]` | Abstraer a términos genéricos antes de registrar |
+| `$learn [texto]` | Registrar aprendizaje o propuesta de mejora en `overview/learning.md` (general o por skill) |
 | `$close` | Protocolo de cierre de sesión con comprobación de pytest / ruff / mypy |
 
 ---
@@ -70,9 +69,24 @@ El agente debe:
 5. Confirmar: `Arquitectura viva actualizada conforme a ARCHITECTURE_STANDARD.md (Índice Raíz overview/architecture.md + Subdocumentos en overview/architecture/).`
 ---
 
-### `$learn [texto]` y `$learnagnostico [texto]`
+### `$learn [texto]`
 
-Registrar un aprendizaje en `overview/learning.md` aplicando el **Filtro Agnóstico**.
+Protocolo único de aprendizaje y mejora continua. Permite registrar tanto aprendizajes generales como propuestas orientadas a skills instaladas, garantizando la inviolabilidad del core y la calidad agnóstica de las reglas.
+
+**Protocolo de ejecución:**
+1. **Inviolabilidad Estricta de Submódulos**: Los submódulos `.agents/` y `.skill/*` son de **solo lectura**. Queda estrictamente prohibido editar o crear archivos directamente dentro de ellos desde el proyecto cliente. Toda propuesta o aprendizaje se registra **exclusivamente** en `overview/learning.md`.
+2. **Filtro Agnóstico (Escudo Anti-parches)**:
+   - Extraer y eliminar código fuente específico, propiedades UI locales, variables de negocio o comandos CLI rígidos.
+   - Traducir el aprendizaje a un principio general de arquitectura, diagnóstico, flujo o gobernanza.
+3. **Detección Automática de Contexto / Skill**:
+   - Si la propuesta corresponde a una skill instalada en `.skill/` (o si el usuario especifica la skill): prefijar automáticamente con la etiqueta de la skill: `- [nombre-skill] Descripción de la mejora en términos genéricos...`.
+   - Si es un aprendizaje transversal del ecosistema/framework: registrar directamente como bullet agnóstico: `- Descripción de la mejora...`.
+4. **Registro en `overview/learning.md`**:
+   - Insertar el nuevo ítem al final de la sección `## 📌 Propuestas de mejora` (como lista limpia de viñetas, sin fechas ni estados dentro del bullet).
+   - Si no existe `overview/learning.md`, inicializarlo desde la plantilla correspondiente.
+5. **Auditoría y Promoción Upstream**:
+   - Las propuestas permanecen en `overview/learning.md` hasta su revisión vía `ejecuta .agents` (Evaluación de 3 Vías: Aplicada al Histórico, Rechazada por violar filtro agnóstico, En Conflicto o Pendiente).
+6. **Confirmación**: Reportar confirmación breve: `Aprendizaje registrado en overview/learning.md [etiqueta: general | nombre-skill].`
 
 ---
 

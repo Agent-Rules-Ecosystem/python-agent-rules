@@ -32,7 +32,7 @@ $work agregar endpoint de autenticación con JWT en FastAPI
 3. **🗺️ Arquitectura Viva (`$archi`)**: Mantenimiento incremental del mapa técnico en `overview/architecture.md` mediante **diagramas sintéticos Mermaid** (`graph LR` / `graph TD`) sin texto redundante, para lectura rápida y rastreo de conexiones.
 4. **👥 Handoff y Memoria Versionada por Agente**: Firma canónica por proveedor/modelo (`[Proveedor] [Modelo] — YYYY-MM-DD`). Historial incremental de solución de bugs y traspaso transparente al cambiar de agente.
 5. **🛡️ Escudo Anti-parches (Filtro Agnóstico)**: Las mejoras al core prohiben código específico o comandos CLI rígidos; únicamente procesos de diagnóstico y gobernanza agnósticos.
-6. **🔒 Inviolabilidad de `.agents/`**: Los archivos de gobernanza en `.agents/` nunca se modifican desde el proyecto local. Todo aprendizaje candidato se plasma en `overview/learning.md` bajo `## 📌 Propuestas de mejora` y se promueve al repositorio oficial con aprobación del propietario.
+6. **🔒 Inviolabilidad de submódulos `.agents/` y `.skill/`**: Los submódulos `.agents/` y `.skill/*` son de solo lectura dentro de repositorios de aplicación. Toda regla o aprendizaje nuevo debe registrarse exclusivamente en `overview/learning.md` bajo `## 📌 Propuestas de mejora` para posterior auditoría y sincronización upstream en sus respectivos repositorios maestros.
 
 ---
 
@@ -46,8 +46,7 @@ Los $-comandos son atajos explícitos que ejecutan protocolos inmediatos en el p
 | `$status` | **Inspección** | Muestra el estado activo en 5 líneas (Agente, Nodo, Validación, Tareas abiertas y Próximo paso). |
 | `$work [descripción]` | **Ejecución** | Registra tarea/bug en `work.md`, abre `tasks.md` y sincroniza automáticamente los 7 rastreadores. |
 | `$archi` | **Arquitectura** | Escanea cambios estructurales de la sesión y actualiza **diagramas Mermaid sintéticos** (sin texto redundante) y capas en `architecture.md`. |
-| `$learn [texto]` | **Aprendizaje** | Valida con Filtro Agnóstico y registra propuesta de mejora candidata en `overview/learning.md`. |
-| `$learnagnostico [texto]` | **Abstracción** | Descontextualiza entidades de negocio a términos agnósticos y las registra en `overview/learning.md`. |
+| `$learn [texto]` | **Aprendizaje** | Valida con Filtro Agnóstico y registra propuesta de mejora (general o por skill) en `overview/learning.md`. |
 | `$close` | **Cierre** | Cierre de sesión, validación de calidad/tests, registro de pendientes y sincronización final de rastreadores. |
 | `ejecuta .agents` | **Auditoría** | Dispara el bootstrap completo más la Evaluación de 3 Vías de `overview/learning.md`. |
 
