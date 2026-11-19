@@ -16,7 +16,7 @@ Lista de verificación obligatoria antes de desplegar aplicaciones de Python en 
 ## 🔐 2. Seguridad y Gestión de Secretos
 
 - [ ] **Credenciales de API / LLM**: Asegurar que claves de OpenAI, Anthropic o bases de datos **NUNCA** estén escritas en código fuente ni commiteadas en Git.
-- [ ] **Escaneo de Dependencias**: Ejecutar auditoría de vulnerabilidades con `uv pip audit` o `safety check`.
+- [ ] **Escaneo de Dependencias**: Ejecutar auditoría de vulnerabilidades con `uvx pip-audit` (o `uv run pip-audit`).
 - [ ] **Desactivación de Modos Debug**: Confirmar que `DEBUG = False` y la documentación automática `/docs` de FastAPI esté protegida o deshabilitada en entorno de producción público si corresponde.
 
 ---
@@ -29,14 +29,16 @@ FROM python:3.12-slim AS builder
 COPY --from=ghcr.io/astral-sh/uv:latest /uv /bin/uv
 WORKDIR /app
 COPY pyproject.toml uv.lock ./
+RUN uv sync --frozen --no-dev --no-install-project
+COPY src/ ./src/
 RUN uv sync --frozen --no-dev
 
 FROM python:3.12-slim AS runner
 WORKDIR /app
 COPY --from=builder /app/.venv /app/.venv
-COPY src/ /app/src/
+COPY --from=builder /app/src /app/src
 ENV PATH="/app/.venv/bin:$PATH"
-CMD ["uvicorn", "src.package_name.main:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["uvicorn", "package_name.main:app", "--host", "0.0.0.0", "--port", "8000"]
 ```
 
 ---

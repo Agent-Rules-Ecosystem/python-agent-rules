@@ -27,7 +27,7 @@ $work agregar endpoint de autenticación con JWT en FastAPI
 
 ## 📌 Pilares de Gobernanza
 
-1. **⚡ Modo Cavernícola & Token Saver**: Respuestas ultra-concisas, eliminación de prosa innecesaria y referencias de líneas en lugar de duplicación de código en chat.
+1. **⚡ Modo Lacónico & Token Saver**: Respuestas ultra-concisas, eliminación de prosa innecesaria y referencias de líneas en lugar de duplicación de código en chat.
 2. **🔄 Sincronización Automática de Rastreadores**: Actualización simultánea e integral de los 7 archivos de control en `overview/` (`session.md`, `work.md`, `tasks.md`, `pendientes.md`, `deuda_tecnica.md`, `work_review.md` y `architecture.md`) durante `$work` y `$close`, sin requerir recordatorio manual del usuario.
 3. **🗺️ Arquitectura Viva (`$archi`)**: Mantenimiento incremental del mapa técnico en `overview/architecture.md` mediante **diagramas sintéticos Mermaid** (`graph LR` / `graph TD`) sin texto redundante, para lectura rápida y rastreo de conexiones.
 4. **👥 Handoff y Memoria Versionada por Agente**: Firma canónica por proveedor/modelo (`[Proveedor] [Modelo] — YYYY-MM-DD`). Historial incremental de solución de bugs y traspaso transparente al cambiar de agente.
@@ -68,8 +68,7 @@ overview/
 │   ├── pendientes.md      # Seguimiento de tareas identificadas al cerrar ($close)
 │   └── deuda_tecnica.md   # Deuda clasificada por prioridad (Alta, Media, Baja)
 ├── trackers/
-│   ├── progress.md        # Progreso general por nodos de avance
-│   └── architecture.md    # Registro incremental de nodos de arquitectura
+│   └── progress.md        # Progreso general por nodos de avance
 ├── context/               # Datos de dominio, changelogs y metadatos no mapeables
 ├── workflows/             # Guías de dominio agnósticas (ej. Origen → Procesamiento → Destino)
 ├── learning.md            # Propuestas de mejora candidatas al core
@@ -92,7 +91,7 @@ Copiar el adaptador correspondiente desde `.agents/adapters/` a la raíz de su e
 - **OpenAI / Codex**: `adapters/AGENTS.md` → `AGENTS.md`
 - **Claude**: `adapters/CLAUDE.md` → `CLAUDE.md`
 - **Gemini / Antigravity**: `adapters/GEMINI.md` → `GEMINI.md`
-- **Cursor**: `adapters/cursor-rule.mdc` → `.cursor/rules/agents.mdc`
+- **Cursor**: `adapters/cursor-rule.mdc` → `.cursor/rules/python-agent-rules.mdc`
 
 ### 3. Iniciar el proyecto
 

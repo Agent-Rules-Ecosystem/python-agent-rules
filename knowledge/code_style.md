@@ -32,6 +32,8 @@ En `pyproject.toml`:
 [tool.ruff]
 target-version = "py312"
 line-length = 88
+
+[tool.ruff.lint]
 select = ["E", "F", "I", "B", "UP", "SIM"] # Error, Pyflakes, Isort, Bugbear, PyUpgrade, Simplify
 
 [tool.ruff.format]
